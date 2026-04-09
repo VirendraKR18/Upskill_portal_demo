@@ -1,20 +1,16 @@
 import React from 'react';
 import { Button, Spin } from 'antd';
+import { PoweroffOutlined } from '@ant-design/icons';
+import styles from './SSOButton.module.css';
 
-type SSOButtonProps = {
+interface SSOButtonProps {
   onClick: () => void;
   loading?: boolean;
   disabled?: boolean;
-  'aria-label'?: string;
-};
+}
 
-export default function SSOButton({
-  onClick,
-  loading = false,
-  disabled = false,
-  'aria-label': ariaLabel = 'Sign in with Organization Account'
-}: SSOButtonProps): JSX.Element {
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+export const SSOButton: React.FC<SSOButtonProps> = ({ onClick, loading = false, disabled = false }) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (disabled || loading) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -25,29 +21,38 @@ export default function SSOButton({
   return (
     <Button
       type="primary"
-      onClick={onClick}
-      disabled={disabled || loading}
-      aria-label={ariaLabel}
-      size="large"
-      style={{
-        minWidth: 320,
-        height: 48,
-        backgroundColor: '#0078D4',
-        borderColor: '#0078D4',
-        boxShadow: 'none'
+      aria-label="Sign in with Organization Account"
+      role="button"
+      className={`${styles.ssoButton} tw-font-sans`}
+      onClick={() => {
+        if (!disabled && !loading) onClick();
       }}
       onKeyDown={handleKeyDown}
+      disabled={disabled}
+      style={{
+        backgroundColor: '#0078D4',
+        borderColor: '#0078D4',
+        height: 48,
+        minWidth: 320,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 12
+      }}
     >
-      <div className="flex items-center justify-center gap-3">
-        {loading ? (
-          <>
-            <Spin size="small" />
-            <span>Redirecting to SSO...</span>
-          </>
-        ) : (
+      {loading ? (
+        <>
+          <Spin size="small" />
+          <span>Redirecting to SSO...</span>
+        </>
+      ) : (
+        <>
+          <PoweroffOutlined aria-hidden />
           <span>Sign in with Organization Account</span>
-        )}
-      </div>
+        </>
+      )}
     </Button>
   );
-}
+};
+
+export default SSOButton;
