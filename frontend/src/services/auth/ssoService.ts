@@ -1,75 +1,92 @@
-/**
- * Client-side SSO helper.
- * - Builds SSO redirect URL with state/nonce
- * - Stores state/nonce in sessionStorage for CSRF protection
- * - Parses callback query params and validates state
- */
+/* SSO service: constructs redirect URL with CSRF protection via state/nonce and handles callback parsing */
+const SSO_PROVIDER_URL = process.env.REACT_APP_SSO_PROVIDER_URL || 'https://sso.example.com/oauth2/authorize';
+const CLIENT_ID = process.env.REACT_APP_SSO_CLIENT_ID || 'frontend-client';
+const REDIRECT_PATH = '/auth/callback';
 
-const SSO_PROVIDER_URL = process.env.REACT_APP_SSO_PROVIDER_URL || 'https://sso.example.com/authorize';
-const CLIENT_ID = process.env.REACT_APP_SSO_CLIENT_ID || 'upskill-client';
-const REDIRECT_URI = process.env.REACT_APP_SSO_REDIRECT_URI || `${window.location.origin}/login/callback`;
-
-function generateRandom(length = 16): string {
-  const arr = new Uint8Array(length);
-  if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
-    window.crypto.getRandomValues(arr);
+function generateRandomString(length = 32): string {
+  const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let res = '';
+  const cryptoObj = typeof crypto !== 'undefined' ? crypto : (window as any).msCrypto;
+  if (cryptoObj && cryptoObj.getRandomValues) {
+    const values = new Uint32Array(length);
+    cryptoObj.getRandomValues(values);
+    for (let i = 0; i < length; i++) {
+      res += charset[values[i] % charset.length];
+    }
   } else {
-    for (let i = 0; i < length; i++) arr[i] = Math.floor(Math.random() * 256);
+    for (let i = 0; i < length; i++) {
+      res += charset[Math.floor(Math.random() * charset.length)];
+    }
   }
-  return Array.from(arr).map((b) => ('0' + b.toString(16)).slice(-2)).join('');
+  return res;
 }
 
+export interface SSOCallback {
+  token?: string;
+  state?: string | null;
+  error?: string | null;
+}
+
+/**
+ * Initiates an SSO login by constructing the provider URL with query params and redirecting the browser.
+ * Stores state and nonce in sessionStorage (temporary) for CSRF protection.
+ */
 export async function initiateSSOLogin(): Promise<void> {
   try {
-    const state = generateRandom(12);
-    const nonce = generateRandom(12);
+    const state = generateRandomString(24);
+    const nonce = generateRandomString(24);
+    const redirectUri = `${window.location.origin}${REDIRECT_PATH}`;
 
-    sessionStorage.setItem('sso.state', state);
-    sessionStorage.setItem('sso.nonce', nonce);
+    // Store state/nonce in sessionStorage
+    sessionStorage.setItem('sso_state', state);
+    sessionStorage.setItem('sso_nonce', nonce);
 
     const params = new URLSearchParams({
       response_type: 'code',
       client_id: CLIENT_ID,
-      redirect_uri: REDIRECT_URI,
-      scope: 'openid profile email',
+      redirect_uri: redirectUri,
       state,
-      nonce
+      nonce,
+      scope: 'openid profile email'
     });
 
-    const url = `${SSO_PROVIDER_URL}?${params.toString()}`;
+    const ssoUrl = `${SSO_PROVIDER_URL}?${params.toString()}`;
 
-    // Redirect to provider
-    window.location.href = url;
+    // Perform the redirect
+    window.location.assign(ssoUrl);
   } catch (err) {
-    // Rethrow to allow consumer to handle UI state
-    throw new Error('Failed to initiate authentication. Please try again.');
+    // Do not leak internal error details to UI; throw generic message
+    console.error('SSO initiation failed', err);
+    throw new Error('SSO provider temporarily unavailable');
   }
 }
 
-export function handleSSOCallback(search: string): { token?: string; error?: string } {
+/**
+ * Handles SSO callback by parsing URL params and validating state/nonce.
+ * Does NOT perform token validation; returns extracted token/code for backend exchange.
+ */
+export function handleSSOCallback(search: string): SSOCallback {
   const params = new URLSearchParams(search);
   const returnedState = params.get('state');
   const code = params.get('code');
   const error = params.get('error');
 
-  const storedState = sessionStorage.getItem('sso.state');
-
-  if (!storedState || !returnedState || storedState !== returnedState) {
-    return { error: 'Invalid or missing state. Potential CSRF detected.' };
-  }
-
-  // Clean up one-time values
-  sessionStorage.removeItem('sso.state');
-  sessionStorage.removeItem('sso.nonce');
+  const storedState = sessionStorage.getItem('sso_state');
+  // Clear stored values (single-use)
+  sessionStorage.removeItem('sso_state');
+  sessionStorage.removeItem('sso_nonce');
 
   if (error) {
-    return { error };
+    return { error, state: returnedState || null };
+  }
+
+  if (!returnedState || returnedState !== storedState) {
+    throw new Error('Invalid SSO state returned from provider');
   }
 
   if (!code) {
-    return { error: 'Missing authorization code from SSO provider.' };
+    throw new Error('Missing authorization code in SSO callback');
   }
 
-  // Frontend should not exchange code directly — return code for backend to exchange
-  return { token: code };
+  return { token: code, state: returnedState };
 }
