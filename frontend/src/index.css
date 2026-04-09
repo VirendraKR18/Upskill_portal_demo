@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global focus ring per design (3px primary) */
+:focus {
+  outline: 3px solid rgba(0, 120, 212, 0.9);
+  outline-offset: 2px;
+}
+
+/* Body defaults */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: theme('fontFamily.body');
+  background-color: #F9FAFB;
+  margin: 0;
+}
