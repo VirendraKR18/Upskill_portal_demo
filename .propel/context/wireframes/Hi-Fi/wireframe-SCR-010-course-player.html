@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCR-010: Course Player - AI Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 500: '#0078D4', 600: '#0060A8' },
+                        secondary: { 500: '#10B981' },
+                        neutral: {
+                            50: '#F9FAFB', 100: '#F3F4F6', 200: '#E5E7EB',
+                            600: '#4B5563', 900: '#111827'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-neutral-900">
+    <!-- Navigation Map: #back-dashboard → SCR-002, #next-module → SCR-010 (different module) -->
+    
+    <!-- Top Bar -->
+    <div class="bg-neutral-900 border-b border-neutral-800 px-6 py-3 flex items-center justify-between">
+        <a href="wireframe-SCR-002-dashboard.html" id="back-dashboard" class="flex items-center gap-2 text-neutral-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Back to Dashboard
+        </a>
+        <div class="flex items-center gap-4">
+            <div class="text-neutral-400 text-sm">Lesson 8 of 12</div>
+            <button class="text-neutral-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="flex h-[calc(100vh-60px)]">
+        <!-- Sidebar - Course Outline -->
+        <div class="w-80 bg-neutral-800 border-r border-neutral-700 overflow-y-auto">
+            <div class="p-6">
+                <h2 class="text-white font-bold text-lg mb-4">Introduction to Machine Learning</h2>
+                
+                <!-- Module 1 -->
+                <div class="mb-4">
+                    <div class="text-neutral-400 text-sm font-semibold mb-2">Module 1: Foundations</div>
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2 p-2 rounded text-sm text-neutral-400 hover:bg-neutral-700">
+                            <svg class="w-4 h-4 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>1.1 What is ML?</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 rounded text-sm text-neutral-400 hover:bg-neutral-700">
+                            <svg class="w-4 h-4 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>1.2 Types of Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="mb-4">
+                    <div class="text-neutral-400 text-sm font-semibold mb-2">Module 2: Algorithms</div>
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2 p-2 rounded bg-primary-600 text-white text-sm">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="font-semibold">2.1 Linear Regression (In Progress)</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 rounded text-sm text-neutral-500">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>2.2 Decision Trees</span>
+                        </div>
+                        <div class="flex items-center gap-2 p-2 rounded text-sm text-neutral-500">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>2.3 Neural Networks Intro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col">
+            <!-- Video Player -->
+            <div class="bg-black flex-1 flex items-center justify-center">
+                <div class="relative w-full h-full max-w-5xl mx-auto">
+                    <!-- Video Placeholder -->
+                    <div class="w-full h-full bg-neutral-800 flex items-center justify-center">
+                        <svg class="w-32 h-32 text-neutral-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Video Controls -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                        <div class="mb-2">
+                            <div class="w-full bg-neutral-700 rounded-full h-1">
+                                <div class="bg-primary-500 h-1 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-white">
+                            <div class="flex items-center gap-4">
+                                <button class="hover:text-primary-400">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </button>
+                                <span class="text-sm">12:45 / 28:30</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <button class="text-sm hover:text-primary-400">1x</button>
+                                <button class="hover:text-primary-400">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 000 12.728"/>
+                                    </svg>
+                                </button>
+                                <button class="hover:text-primary-400">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M7 5h10v10h4V3H7v2zm0 6h10v10h4V11H7v2z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs & Content -->
+            <div class="bg-white border-t border-neutral-200">
+                <div class="border-b border-neutral-200">
+                    <div class="max-w-5xl mx-auto px-6">
+                        <nav class="flex gap-8">
+                            <button class="py-3 border-b-2 border-primary-500 text-primary-600 font-semibold">Overview</button>
+                            <button class="py-3 border-b-2 border-transparent text-neutral-600 hover:text-neutral-900">Transcript</button>
+                            <button class="py-3 border-b-2 border-transparent text-neutral-600 hover:text-neutral-900">Resources</button>
+                            <button class="py-3 border-b-2 border-transparent text-neutral-600 hover:text-neutral-900">Notes</button>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="max-w-5xl mx-auto px-6 py-6">
+                    <h2 class="text-2xl font-bold text-neutral-900 mb-3">2.1 Linear Regression Fundamentals</h2>
+                    <p class="text-neutral-600 mb-6">Learn how linear regression models work and when to apply them to real-world problems.</p>
+                    
+                    <!-- Progress & Actions -->
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="flex-1">
+                            <div class="flex justify-between text-sm text-neutral-600 mb-1">
+                                <span>Lesson Progress</span>
+                                <span>45%</span>
+                            </div>
+                            <div class="w-full bg-neutral-200 rounded-full h-2">
+                                <div class="bg-primary-500 h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <button id="mark-complete-btn" class="bg-secondary-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-secondary-600">
+                            Mark Complete
+                        </button>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between pt-6 border-t border-neutral-200">
+                        <button class="flex items-center gap-2 text-neutral-600 hover:text-primary-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                            Previous Lesson
+                        </button>
+                        <button id="next-module" class="flex items-center gap-2 bg-primary-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-600">
+                            Next Lesson
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

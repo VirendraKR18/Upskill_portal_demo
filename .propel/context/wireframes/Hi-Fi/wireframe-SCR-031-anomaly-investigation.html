@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCR-031: Anomaly Investigation - AI Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:{50:'#E6F2FF',500:'#0078D4',600:'#0060A8'},secondary:{500:'#10B981'},accent:{500:'#8B5CF6'},error:{500:'#EF4444'},warning:{500:'#F59E0B'},neutral:{50:'#F9FAFB',100:'#F3F4F6',200:'#E5E7EB',300:'#D1D5DB',500:'#6B7280',600:'#4B5563',700:'#374151',900:'#111827'}}}}}</script>
+    <style>body{font-family:'Inter',system-ui,sans-serif;}</style>
+</head>
+<body class="bg-neutral-50">
+    <!-- Navigation Map: #back-anomalies → SCR-015 -->
+    <div class="flex h-screen">
+        <aside class="w-64 bg-neutral-900 text-white flex-shrink-0">
+            <div class="p-6 border-b border-neutral-800"><div class="flex items-center gap-3"><svg class="w-8 h-8 text-primary-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5z"/></svg><span class="font-bold">AI Learning</span></div></div>
+            <nav class="p-4 space-y-1">
+                <a href="wireframe-SCR-008-admin-console.html" class="flex items-center gap-3 px-4 py-3 text-neutral-300 hover:bg-neutral-800 rounded-lg">Dashboard</a>
+                <a href="wireframe-SCR-013-content-management.html" class="flex items-center gap-3 px-4 py-3 text-neutral-300 hover:bg-neutral-800 rounded-lg">Content</a>
+                <a href="wireframe-SCR-014-credit-audit.html" class="flex items-center gap-3 px-4 py-3 text-neutral-300 hover:bg-neutral-800 rounded-lg">Credit Audit</a>
+                <a href="wireframe-SCR-015-anomaly-detection.html" id="back-anomalies" class="flex items-center gap-3 px-4 py-3 bg-primary-600 rounded-lg text-white font-medium">Anomalies</a>
+            </nav>
+        </aside>
+        <div class="flex-1 overflow-y-auto">
+            <header class="bg-white border-b border-neutral-200 px-8 py-4"><div class="flex items-center gap-3"><a href="wireframe-SCR-015-anomaly-detection.html" class="text-neutral-400 hover:text-neutral-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></a><h1 class="text-2xl font-bold text-neutral-900">Anomaly Investigation</h1><span class="text-xs bg-red-50 text-error-500 px-3 py-1 rounded-full font-medium">Critical</span></div></header>
+            <main class="p-8">
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="col-span-2 space-y-6">
+                        <!-- Anomaly Summary -->
+                        <div class="bg-white rounded-lg border border-neutral-200 p-6">
+                            <h2 class="text-lg font-semibold text-neutral-900 mb-4">Anomaly Summary</h2>
+                            <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-4"><p class="text-sm text-neutral-700"><strong>Rapid credit accumulation detected:</strong> User accumulated 150 credits within a 2-hour window, which is 12x the normal rate. AI confidence: 94%.</p></div>
+                            <div class="grid grid-cols-3 gap-4 text-sm">
+                                <div><p class="text-neutral-500">Detected</p><p class="font-medium">Apr 10, 14:22</p></div>
+                                <div><p class="text-neutral-500">Anomaly Type</p><p class="font-medium">Credit Velocity</p></div>
+                                <div><p class="text-neutral-500">AI Confidence</p><p class="font-medium text-error-500">94%</p></div>
+                            </div>
+                        </div>
+                        <!-- User Activity Timeline -->
+                        <div class="bg-white rounded-lg border border-neutral-200 p-6">
+                            <h2 class="text-lg font-semibold text-neutral-900 mb-4">Activity Timeline</h2>
+                            <div class="space-y-4 border-l-2 border-neutral-200 ml-3 pl-6">
+                                <div class="relative"><span class="absolute -left-8 w-3 h-3 bg-error-500 rounded-full border-2 border-white"></span><p class="text-sm font-medium text-neutral-900">Completed: Advanced ML Assessment (+25 credits)</p><p class="text-xs text-neutral-500">14:22 · Duration: 3 min (avg: 45 min)</p></div>
+                                <div class="relative"><span class="absolute -left-8 w-3 h-3 bg-error-500 rounded-full border-2 border-white"></span><p class="text-sm font-medium text-neutral-900">Completed: Python Data Structures (+15 credits)</p><p class="text-xs text-neutral-500">14:18 · Duration: 2 min (avg: 30 min)</p></div>
+                                <div class="relative"><span class="absolute -left-8 w-3 h-3 bg-warning-500 rounded-full border-2 border-white"></span><p class="text-sm font-medium text-neutral-900">Completed: SQL Fundamentals (+15 credits)</p><p class="text-xs text-neutral-500">14:10 · Duration: 5 min (avg: 25 min)</p></div>
+                                <div class="relative"><span class="absolute -left-8 w-3 h-3 bg-warning-500 rounded-full border-2 border-white"></span><p class="text-sm font-medium text-neutral-900">Completed: Cloud Basics Course (+15 credits)</p><p class="text-xs text-neutral-500">13:55 · Duration: 8 min (avg: 2 hr)</p></div>
+                                <div class="relative"><span class="absolute -left-8 w-3 h-3 bg-neutral-300 rounded-full border-2 border-white"></span><p class="text-sm font-medium text-neutral-900">Login from IP 203.0.113.42</p><p class="text-xs text-neutral-500">12:30 · Normal login</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Actions Panel -->
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-lg border border-neutral-200 p-6">
+                            <h3 class="font-semibold text-neutral-900 mb-3">User Info</h3>
+                            <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">MJ</div><div><p class="font-medium text-sm">mike.j@company.com</p><p class="text-xs text-neutral-500">Engineering Team</p></div></div>
+                            <div class="space-y-2 text-sm"><div class="flex justify-between"><span class="text-neutral-500">Total Credits</span><span class="font-medium">350</span></div><div class="flex justify-between"><span class="text-neutral-500">Prior Anomalies</span><span class="font-medium text-warning-500">1</span></div></div>
+                        </div>
+                        <div class="bg-white rounded-lg border border-neutral-200 p-6">
+                            <h3 class="font-semibold text-neutral-900 mb-3">Resolution</h3>
+                            <div class="space-y-3">
+                                <button class="w-full py-2.5 bg-error-500 text-white rounded-lg text-sm font-semibold hover:bg-red-600">Reverse Credits & Lock Account</button>
+                                <button class="w-full py-2.5 bg-warning-500 text-white rounded-lg text-sm font-semibold hover:bg-yellow-600">Reverse Credits Only</button>
+                                <button class="w-full py-2.5 border border-neutral-300 text-neutral-700 rounded-lg text-sm font-semibold hover:bg-neutral-50">Mark as False Positive</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg border border-neutral-200 p-6">
+                            <h3 class="font-semibold text-neutral-900 mb-3">Notes</h3>
+                            <textarea class="w-full border border-neutral-300 rounded-lg p-3 text-sm h-24 focus:ring-2 focus:ring-primary-500" placeholder="Investigation notes..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

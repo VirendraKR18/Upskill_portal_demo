@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCR-023: Notification Settings - AI Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:{50:'#E6F2FF',500:'#0078D4',600:'#0060A8'},secondary:{500:'#10B981'},accent:{500:'#8B5CF6'},error:{500:'#EF4444'},warning:{500:'#F59E0B'},neutral:{50:'#F9FAFB',100:'#F3F4F6',200:'#E5E7EB',300:'#D1D5DB',500:'#6B7280',600:'#4B5563',700:'#374151',900:'#111827'}}}}}</script>
+    <style>body{font-family:'Inter',system-ui,sans-serif;} .toggle{position:relative;width:44px;height:24px;background:#D1D5DB;border-radius:9999px;cursor:pointer;transition:background .2s;} .toggle.on{background:#0078D4;} .toggle::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;background:white;border-radius:50%;transition:transform .2s;} .toggle.on::after{transform:translateX(20px);}</style>
+</head>
+<body class="bg-neutral-50">
+    <!-- Navigation Map: #profile → SCR-004, #dashboard → SCR-002 -->
+    <header class="bg-white border-b border-neutral-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-8 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-8"><a href="wireframe-SCR-002-dashboard.html" id="dashboard" class="flex items-center gap-2"><svg class="w-7 h-7 text-primary-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5z"/></svg><span class="font-bold text-neutral-900">AI Learning</span></a><nav class="flex gap-6 text-sm"><a href="wireframe-SCR-002-dashboard.html" class="text-neutral-600 hover:text-primary-500">Dashboard</a><a href="wireframe-SCR-005-learning-paths.html" class="text-neutral-600 hover:text-primary-500">Learning Paths</a><a href="wireframe-SCR-003-leaderboard.html" class="text-neutral-600 hover:text-primary-500">Leaderboard</a></nav></div>
+            <div class="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white text-xs font-bold">VR</div>
+        </div>
+    </header>
+    <main class="max-w-3xl mx-auto px-8 py-8">
+        <div class="text-sm text-neutral-500 mb-4"><a href="wireframe-SCR-004-profile.html" id="profile" class="hover:text-primary-500">Profile</a> <span class="mx-2">/</span> <span class="text-neutral-900">Notifications</span></div>
+        <h1 class="text-2xl font-bold text-neutral-900 mb-6">Notification Settings</h1>
+        <div class="space-y-6">
+            <!-- Email Notifications -->
+            <div class="bg-white rounded-xl border border-neutral-200 p-6">
+                <h2 class="text-lg font-semibold text-neutral-900 mb-4">Email Notifications</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between"><div><p class="text-sm font-medium text-neutral-900">Course Updates</p><p class="text-xs text-neutral-500">New content added to enrolled courses</p></div><div class="toggle on"></div></div>
+                    <hr class="border-neutral-100">
+                    <div class="flex items-center justify-between"><div><p class="text-sm font-medium text-neutral-900">Assessment Reminders</p><p class="text-xs text-neutral-500">Upcoming due dates and deadlines</p></div><div class="toggle on"></div></div>
+                    <hr class="border-neutral-100">
+                    <div class="flex items-center justify-between"><div><p class="text-sm font-medium text-neutral-900">Leaderboard Changes</p><p class="text-xs text-neutral-500">When your rank changes</p></div><div class="toggle"></div></div>
+                    <hr class="border-neutral-100">
+                    <div class="flex items-center justify-between"><div><p class="text-sm font-medium text-neutral-900">Certification Status</p><p class="text-xs text-neutral-500">Application approvals and exam updates</p></div><div class="toggle on"></div></div>
+                    <hr class="border-neutral-100">
+                    <div class="flex items-center justify-between"><div><p class="text-sm font-medium text-neutral-900">Weekly Digest</p><p class="text-xs text-neutral-500">Summary of progress and recommendations</p></div><div class="toggle on"></div></div>
+                </div>
+            </div>
+            <!-- In-App Notifications -->
+            <div class="bg-white rounded-xl border border-neutral-200 p-6">
+                <h2 class="text-lg font-semibold text-neutral-900 mb-4">In-App Notifications</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between"><div><p class="text-sm font-medium text-neutral-900">Achievement Badges</p><p class="text-xs text-neutral-500">When you earn a new badge</p></div><div class="toggle on"></div></div>
+                    <hr class="border-neutral-100">
+                    <div class="flex items-center justify-between"><div><p class="text-sm font-medium text-neutral-900">Team Activity</p><p class="text-xs text-neutral-500">When team members complete courses</p></div><div class="toggle on"></div></div>
+                    <hr class="border-neutral-100">
+                    <div class="flex items-center justify-between"><div><p class="text-sm font-medium text-neutral-900">AI Recommendations</p><p class="text-xs text-neutral-500">Personalized course suggestions</p></div><div class="toggle on"></div></div>
+                </div>
+            </div>
+            <div class="flex gap-4"><button class="px-6 py-2.5 bg-primary-500 text-white rounded-lg font-semibold text-sm hover:bg-primary-600">Save Preferences</button><button class="px-6 py-2.5 border border-neutral-300 text-neutral-700 rounded-lg text-sm hover:bg-neutral-50">Reset to Defaults</button></div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCR-005: Learning Path Browser - AI Learning Platform</title>
+    <meta name="description" content="High-fidelity wireframe for Learning Path Browser (SCR-005) - Discover and enroll in AI learning paths">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#E6F2FF',
+                            500: '#0078D4',
+                            600: '#0060A8',
+                            700: '#00487C'
+                        },
+                        secondary: {
+                            500: '#10B981'
+                        },
+                        accent: {
+                            500: '#8B5CF6'
+                        },
+                        neutral: {
+                            50: '#F9FAFB',
+                            100: '#F3F4F6',
+                            200: '#E5E7EB',
+                            300: '#D1D5DB',
+                            500: '#6B7280',
+                            600: '#4B5563',
+                            700: '#374151',
+                            900: '#111827'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --transition-base: 300ms;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-neutral-50">
+    <!-- Navigation Map
+    | Element | Action | Target Screen |
+    |---------|--------|---------------|
+    | #dashboard-link | click | SCR-002 (Dashboard) |
+    | #path-card-beginner | click | SCR-018 (Learning Path Detail) |
+    | #path-card-intermediate | click | SCR-018 (Learning Path Detail) |
+    | #path-card-advanced | click | SCR-018 (Learning Path Detail) |
+    | #profile-link | click | SCR-004 (User Profile) |
+    -->
+
+    <!-- Header -->
+    <header class="bg-white border-b border-neutral-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <svg class="w-10 h-10 text-primary-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5zm0 18.5c-4.5-1-7.5-4.5-7.5-8.5V8.3l7.5-3.8 7.5 3.8v3.7c0 4-3 7.5-7.5 8.5zM8 12l-1.4 1.4L10 17l8-8-1.4-1.4L10 14.2 8 12z"/>
+                    </svg>
+                    <span class="text-xl font-bold text-neutral-900">AI Learning Platform</span>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="wireframe-SCR-002-dashboard.html" id="dashboard-link" class="text-neutral-600 hover:text-primary-500 transition-colors">Dashboard</a>
+                    <a href="wireframe-SCR-005-learning-paths.html" class="text-primary-500 font-semibold border-b-2 border-primary-500 pb-1">Learning Paths</a>
+                    <a href="wireframe-SCR-003-leaderboard.html" class="text-neutral-600 hover:text-primary-500 transition-colors">Leaderboard</a>
+                    
+                    <a href="wireframe-SCR-004-profile.html" id="profile-link" class="flex items-center gap-2 hover:bg-neutral-50 px-3 py-2 rounded-lg transition-colors">
+                        <div class="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                            JD
+                        </div>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold text-neutral-900 mb-2">Explore Learning Paths</h1>
+            <p class="text-lg text-neutral-600">Structured journeys to master AI skills</p>
+        </div>
+
+        <!-- Search & Filters -->
+        <div class="bg-white rounded-lg border border-neutral-200 p-6 mb-8">
+            <div class="flex flex-col md:flex-row gap-4">
+                <!-- Search Bar -->
+                <div class="flex-1 relative">
+                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input type="text" placeholder="Search learning paths..." class="w-full pl-10 pr-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+                </div>
+
+                <!-- Difficulty Filter -->
+                <select class="px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    <option>All Levels</option>
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+
+                <!-- Duration Filter -->
+                <select class="px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    <option>Any Duration</option>
+                    <option>&lt; 2 weeks</option>
+                    <option>2-4 weeks</option>
+                    <option>&gt; 4 weeks</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Recommended Section -->
+        <section class="mb-10">
+            <div class="flex items-center gap-2 mb-6">
+                <h2 class="text-2xl font-bold text-neutral-900">Recommended for You</h2>
+                <span class="text-xs font-medium text-primary-600 bg-primary-50 px-2 py-1 rounded">AI-Powered</span>
+            </div>
+
+            <div class="bg-gradient-to-r from-primary-500 to-blue-600 rounded-lg p-8 text-white mb-8">
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+                    <div class="w-20 h-20 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold mb-2">Deep Learning Specialization</h3>
+                        <p class="text-blue-100 mb-4">Perfect next step based on your ML progress • 6 courses • 180 credits • 8 weeks</p>
+                        <div class="flex items-center gap-4">
+                            <a href="wireframe-SCR-018-path-detail.html" class="bg-white text-primary-600 px-6 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                View Details
+                            </a>
+                            <button class="text-white border border-white px-6 py-2 rounded-lg font-semibold hover:bg-white hover:bg-opacity-10 transition-colors">
+                                Add to Wishlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Learning Paths -->
+        <section>
+            <h2 class="text-2xl font-bold text-neutral-900 mb-6">All Learning Paths</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Beginner Path Card -->
+                <a href="wireframe-SCR-018-path-detail.html" id="path-card-beginner" class="bg-white rounded-lg border border-neutral-200 overflow-hidden transition-all duration-300 card-hover shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-secondary-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <svg class="w-20 h-20 mx-auto mb-3 opacity-75" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5z"/>
+                            </svg>
+                            <span class="text-3xl font-bold">Beginner</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-xs font-medium text-secondary-600 bg-green-50 px-2 py-1 rounded">Beginner</span>
+                            <span class="text-xs text-neutral-500">•</span>
+                            <span class="text-xs text-neutral-600">4 courses</span>
+                            <span class="text-xs text-neutral-500">•</span>
+                            <span class="text-xs text-neutral-600">3-4 weeks</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-neutral-900 mb-3">AI Foundations Path</h3>
+                        <p class="text-neutral-600 mb-4">Start your AI journey with essential concepts, Python programming, and introductory machine learning</p>
+                        
+                        <div class="border-t border-neutral-200 pt-4 mb-4">
+                            <p class="text-sm font-semibold text-neutral-700 mb-2">Courses Included:</p>
+                            <ul class="text-sm text-neutral-600 space-y-1">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Introduction to AI & ML Concepts
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Python Programming Essentials
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Data Analysis with Pandas
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Machine Learning Basics
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary-500">80</p>
+                                    <p class="text-xs text-neutral-500">Credits</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-neutral-900">1,234</p>
+                                    <p class="text-xs text-neutral-500">Enrolled</p>
+                                </div>
+                            </div>
+                            <button class="bg-secondary-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-secondary-600 transition-colors">
+                                Enroll Now
+                            </button>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Intermediate Path Card -->
+                <a href="wireframe-SCR-018-path-detail.html" id="path-card-intermediate" class="bg-white rounded-lg border border-neutral-200 overflow-hidden transition-all duration-300 card-hover shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-accent-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <svg class="w-20 h-20 mx-auto mb-3 opacity-75" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="text-3xl font-bold">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-xs font-medium text-accent-600 bg-purple-50 px-2 py-1 rounded">Intermediate</span>
+                            <span class="text-xs text-neutral-500">•</span>
+                            <span class="text-xs text-neutral-600">6 courses</span>
+                            <span class="text-xs text-neutral-500">•</span>
+                            <span class="text-xs text-neutral-600">6-8 weeks</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-neutral-900 mb-3">Deep Learning Specialization</h3>
+                        <p class="text-neutral-600 mb-4">Master neural networks, computer vision, NLP, and advanced deep learning architectures</p>
+                        
+                        <div class="border-t border-neutral-200 pt-4 mb-4">
+                            <p class="text-sm font-semibold text-neutral-700 mb-2">Courses Included:</p>
+                            <ul class="text-sm text-neutral-600 space-y-1">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Neural Networks & Deep Learning
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Convolutional Neural Networks
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Natural Language Processing
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    + 3 more courses
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary-500">180</p>
+                                    <p class="text-xs text-neutral-500">Credits</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-neutral-900">856</p>
+                                    <p class="text-xs text-neutral-500">Enrolled</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <span class="text-xs text-orange-600 font-medium">Prerequisites required</span>
+                                <button class="bg-accent-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-accent-600 transition-colors">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Advanced Path Card -->
+                <a href="wireframe-SCR-018-path-detail.html" id="path-card-advanced" class="bg-white rounded-lg border border-neutral-200 overflow-hidden transition-all duration-300 card-hover shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-red-400 to-orange-600 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <svg class="w-20 h-20 mx-auto mb-3 opacity-75" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L1 21h22L12 2zm0 5l7.53 13H4.47L12 7z"/>
+                            </svg>
+                            <span class="text-3xl font-bold">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-xs font-medium text-orange-600 bg-orange-50 px-2 py-1 rounded">Advanced</span>
+                            <span class="text-xs text-neutral-500">•</span>
+                            <span class="text-xs text-neutral-600">8 courses</span>
+                            <span class="text-xs text-neutral-500">•</span>
+                            <span class="text-xs text-neutral-600">10-12 weeks</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-neutral-900 mb-3">MLOps & Production AI</h3>
+                        <p class="text-neutral-600 mb-4">Master deployment, monitoring, scaling, and maintaining ML models in production environments</p>
+                        
+                        <div class="border-t border-neutral-200 pt-4 mb-4">
+                            <p class="text-sm font-semibold text-neutral-700 mb-2">Courses Included:</p>
+                            <ul class="text-sm text-neutral-600 space-y-1">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    ML System Design & Architecture
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Model Deployment & Serving
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Monitoring & Model Drift Detection
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    + 5 more courses
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary-500">240</p>
+                                    <p class="text-xs text-neutral-500">Credits</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-neutral-900">342</p>
+                                    <p class="text-xs text-neutral-500">Enrolled</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <span class="text-xs text-orange-600 font-medium">Prerequisites required</span>
+                                <button class="bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-orange-700 transition-colors">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Specialized Path Card -->
+                <a href="wireframe-SCR-018-path-detail.html" class="bg-white rounded-lg border border-neutral-200 overflow-hidden transition-all duration-300 card-hover shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <svg class="w-20 h-20 mx-auto mb-3 opacity-75" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                            </svg>
+                            <span class="text-3xl font-bold">Specialized</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded">Intermediate</span>
+                            <span class="text-xs text-neutral-500">•</span>
+                            <span class="text-xs text-neutral-600">5 courses</span>
+                            <span class="text-xs text-neutral-500">•</span>
+                            <span class="text-xs text-neutral-600">5-6 weeks</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-neutral-900 mb-3">Computer Vision Mastery</h3>
+                        <p class="text-neutral-600 mb-4">Become an expert in image processing, object detection, and visual recognition systems</p>
+                        
+                        <div class="border-t border-neutral-200 pt-4 mb-4">
+                            <p class="text-sm font-semibold text-neutral-700 mb-2">Courses Included:</p>
+                            <ul class="text-sm text-neutral-600 space-y-1">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Image Processing Fundamentals
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Object Detection with YOLO
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Facial Recognition Systems
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    + 2 more courses
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary-500">150</p>
+                                    <p class="text-xs text-neutral-500">Credits</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-neutral-900">678</p>
+                                    <p class="text-xs text-neutral-500">Enrolled</p>
+                                </div>
+                            </div>
+                            <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                Enroll Now
+                            </button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCR-024: Certification Status - AI Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:{50:'#E6F2FF',500:'#0078D4',600:'#0060A8'},secondary:{500:'#10B981'},accent:{500:'#8B5CF6'},error:{500:'#EF4444'},warning:{500:'#F59E0B'},neutral:{50:'#F9FAFB',100:'#F3F4F6',200:'#E5E7EB',300:'#D1D5DB',500:'#6B7280',600:'#4B5563',700:'#374151',900:'#111827'}}}}}</script>
+    <style>body{font-family:'Inter',system-ui,sans-serif;}</style>
+</head>
+<body class="bg-neutral-50">
+    <!-- Navigation Map: #new-application → SCR-006, #dashboard → SCR-002 -->
+    <header class="bg-white border-b border-neutral-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-8 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-8"><a href="wireframe-SCR-002-dashboard.html" id="dashboard" class="flex items-center gap-2"><svg class="w-7 h-7 text-primary-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5z"/></svg><span class="font-bold text-neutral-900">AI Learning</span></a><nav class="flex gap-6 text-sm"><a href="wireframe-SCR-002-dashboard.html" class="text-neutral-600 hover:text-primary-500">Dashboard</a><a href="wireframe-SCR-005-learning-paths.html" class="text-neutral-600 hover:text-primary-500">Learning Paths</a><a href="wireframe-SCR-003-leaderboard.html" class="text-neutral-600 hover:text-primary-500">Leaderboard</a></nav></div>
+            <div class="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white text-xs font-bold">VR</div>
+        </div>
+    </header>
+    <main class="max-w-5xl mx-auto px-8 py-8">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-bold text-neutral-900">Certification Status</h1>
+            <a href="wireframe-SCR-006-certification-application.html" id="new-application" class="px-4 py-2.5 bg-primary-500 text-white rounded-lg text-sm font-semibold hover:bg-primary-600">New Application</a>
+        </div>
+        <!-- Active Applications -->
+        <h2 class="text-lg font-semibold text-neutral-900 mb-4">Active Applications</h2>
+        <div class="space-y-4 mb-8">
+            <div class="bg-white rounded-lg border border-neutral-200 p-5 flex items-center gap-5">
+                <div class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-warning-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+                <div class="flex-1">
+                    <p class="font-semibold text-neutral-900">AWS ML Specialty</p>
+                    <p class="text-sm text-neutral-500">AWS Training · Submitted Apr 7, 2025</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs bg-yellow-50 text-warning-500 px-3 py-1 rounded-full font-medium">Pending Manager Approval</span>
+                    <p class="text-xs text-neutral-400 mt-1">Est. review: 3 days</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg border border-neutral-200 p-5 flex items-center gap-5">
+                <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-primary-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+                <div class="flex-1">
+                    <p class="font-semibold text-neutral-900">Google TensorFlow Developer</p>
+                    <p class="text-sm text-neutral-500">Google Cloud · Submitted Mar 28, 2025</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs bg-blue-50 text-primary-500 px-3 py-1 rounded-full font-medium">Approved - Scheduled</span>
+                    <p class="text-xs text-neutral-400 mt-1">Exam: May 5, 2025</p>
+                </div>
+            </div>
+        </div>
+        <!-- Completed Certifications -->
+        <h2 class="text-lg font-semibold text-neutral-900 mb-4">Completed Certifications</h2>
+        <div class="space-y-4">
+            <div class="bg-white rounded-lg border border-neutral-200 p-5 flex items-center gap-5">
+                <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-secondary-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+                <div class="flex-1">
+                    <p class="font-semibold text-neutral-900">Azure AI Fundamentals (AI-900)</p>
+                    <p class="text-sm text-neutral-500">Microsoft · Completed Feb 15, 2025</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs bg-green-50 text-secondary-500 px-3 py-1 rounded-full font-medium">Passed · 50 Credits</span>
+                    <p class="text-xs text-neutral-400 mt-1">Score: 850/1000</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg border border-neutral-200 p-5 flex items-center gap-5">
+                <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-secondary-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+                <div class="flex-1">
+                    <p class="font-semibold text-neutral-900">Python PCEP Certificate</p>
+                    <p class="text-sm text-neutral-500">OpenEDG · Completed Jan 10, 2025</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs bg-green-50 text-secondary-500 px-3 py-1 rounded-full font-medium">Passed · 30 Credits</span>
+                    <p class="text-xs text-neutral-400 mt-1">Score: 92%</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

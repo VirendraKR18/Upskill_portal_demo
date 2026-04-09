@@ -1,0 +1,183 @@
+1. Objective
+
+Design and implement a credit-based learning platform to upskill organizational resources in AI, enabling measurable progress, gamified engagement, and career advancement, ultimately transforming the organization into an AI-native enterprise.
+
+2. Business Goals
+Build AI competency across engineering teams
+Introduce measurable and verifiable learning credits
+Improve employee engagement via gamification
+Enable certification pathways through approved providers
+Align learning outcomes with career progression
+Provide leadership visibility into skill development
+3. Scope
+In Scope
+Web-based learning platform
+Credit-based system for tracking progress
+Gamification (badges, ranks, leaderboards)
+Certification workflows
+Integration with Org SSO
+Reporting & analytics dashboards
+Audit-ready credit system
+Out of Scope (Phase 1)
+Mobile application
+Deep LMS integration (future phase)
+External marketplace integrations beyond approved providers
+4. Stakeholders
+Leadership Team – Strategy & adoption
+Engineering Teams – Primary users
+HR (Workday) – Employee data & career alignment
+L&D Team – Content governance
+IT/Admin – Platform management
+5. User Personas
+Learner (Engineer)
+Enrolls in courses
+Earns credits & badges
+Tracks progress
+Manager
+Monitors team progress
+Recommends learning paths
+Admin
+Manages content, credits, certifications
+Ensures audit compliance
+Leadership
+Views organizational AI readiness metrics
+6. Functional Requirements
+6.1 Authentication & User Management
+Login via Organization SSO
+Sync employee data from Workday
+Role-based access control (RBAC)
+6.2 Learning System
+Structured learning paths:
+Beginner → Intermediate → Advanced AI
+Content types:
+Courses
+Labs
+Assessments
+Projects
+6.3 Credit-Based System
+Credits assigned based on:
+Course completion
+Assessment scores
+Project submissions
+Credit attributes:
+Quantifiable (numeric value)
+Verifiable (proof of completion)
+Auditable (logs & history)
+6.4 Gamification
+Badges
+Skill-based (e.g., “ML Beginner”)
+Achievement-based (e.g., “100 Credits Earned”)
+Ranking System
+Global leaderboard
+Team leaderboard
+Levels
+Tier progression based on credits
+6.5 Certification Workflow
+Integration with approved training providers
+Certification lifecycle:
+Apply for certification
+Approval workflow (Manager/Admin)
+Completion validation
+Credit allocation
+6.6 Career Advancement
+Map credits → skill levels → roles
+Recommend:
+Promotions
+Role transitions
+Integration with HR (Workday)
+6.7 Dashboard & Analytics
+Individual dashboard:
+Credits earned
+Progress tracking
+Badges
+Manager dashboard:
+Team performance
+Skill gaps
+Leadership dashboard:
+AI readiness score
+Adoption metrics
+6.8 Audit & Compliance
+Maintain:
+Credit logs
+Certification records
+User activity history
+Ensure:
+Traceability
+Tamper-proof records
+6.9 Future LMS Integration
+API-ready architecture
+Support for:
+Content sync
+Progress sync
+7. Non-Functional Requirements
+7.1 Performance
+Support concurrent users across organization
+Fast dashboard load (<2s)
+7.2 Security
+SSO authentication
+Data encryption (at rest & in transit)
+Role-based access
+7.3 Scalability
+Modular microservices architecture
+Cloud-native deployment
+7.4 Reliability
+99.9% uptime
+Backup & recovery mechanisms
+7.5 Usability
+UX similar to:
+Microsoft Learn
+Google Learn
+Intuitive navigation
+Personalized recommendations
+8. System Architecture (High-Level)
+Frontend: Web (React/Angular)
+Backend: API Layer (Node.js / .NET)
+Database: Relational (PostgreSQL / SQL Server)
+Auth: SSO (OAuth/SAML)
+Integrations:
+Workday (HR data)
+Certification providers
+Future LMS
+9. Data Model (High-Level Entities)
+User
+Learning Path
+Course
+Credit
+Badge
+Certification
+Leaderboard
+Audit Log
+10. KPIs / Success Metrics
+% of employees enrolled in AI learning
+Average credits earned per user
+Certification completion rate
+Engagement rate (daily/weekly active users)
+Improvement in internal AI project delivery
+11. Risks & Mitigation
+Risk	Mitigation
+Low adoption	Leadership-driven mandates
+Data inconsistency	Workday sync validation
+Gaming the system	Audit logs & verification
+Integration delays	API-first design
+12. Implementation Phases
+Phase 1 (MVP)
+SSO login
+Learning paths
+Credit system
+Basic gamification
+Dashboards
+Phase 2
+Certification workflows
+Advanced analytics
+Workday integration
+Phase 3
+LMS integration
+AI-driven recommendations
+Mobile support
+13. Acceptance Criteria
+Users can login via SSO
+Credits are assigned and tracked correctly
+Leaderboard reflects real-time rankings
+Certifications are verifiable
+Dashboards provide accurate insights
+Audit logs are accessible and complete

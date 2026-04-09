@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCR-013: Content Management - AI Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: {
+            primary: { 50: '#E6F2FF', 500: '#0078D4', 600: '#0060A8' },
+            secondary: { 500: '#10B981' }, warning: { 500: '#F59E0B' },
+            neutral: { 50: '#F9FAFB', 100: '#F3F4F6', 200: '#E5E7EB', 300: '#D1D5DB', 500: '#6B7280', 600: '#4B5563', 700: '#374151', 900: '#111827' }
+        }}}}
+    </script>
+    <style>body { font-family: 'Inter', system-ui, sans-serif; }</style>
+</head>
+<body class="bg-neutral-50">
+    <!-- Navigation Map
+    | Element | Action | Target Screen |
+    |---------|--------|---------------|
+    | #create-path-btn | click | SCR-027 (Create/Edit Learning Path) |
+    | #create-course-btn | click | SCR-028 (Create/Edit Course) |
+    | #admin-console | click | SCR-008 (Admin Console) |
+    -->
+    <div class="flex h-screen">
+        <aside class="w-64 bg-neutral-900 text-white flex-shrink-0">
+            <div class="p-6 border-b border-neutral-800"><div class="flex items-center gap-3"><svg class="w-8 h-8 text-primary-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5z"/></svg><span class="font-bold">AI Learning</span></div></div>
+            <nav class="p-4 space-y-1">
+                <a href="wireframe-SCR-008-admin-console.html" id="admin-console" class="flex items-center gap-3 px-4 py-3 text-neutral-300 hover:bg-neutral-800 rounded-lg"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Admin Console</a>
+                <a href="wireframe-SCR-013-content-management.html" class="flex items-center gap-3 px-4 py-3 bg-primary-600 rounded-lg text-white font-medium"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>Content Management</a>
+                <a href="wireframe-SCR-014-credit-audit.html" class="flex items-center gap-3 px-4 py-3 text-neutral-300 hover:bg-neutral-800 rounded-lg"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Credit Audit</a>
+            </nav>
+        </aside>
+        <div class="flex-1 overflow-y-auto">
+            <header class="bg-white border-b border-neutral-200 px-8 py-4 flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-neutral-900">Content Management</h1>
+                <div class="flex items-center gap-3">
+                    <a href="wireframe-SCR-027-create-learning-path.html" id="create-path-btn" class="px-4 py-2 border border-primary-500 text-primary-500 rounded-lg text-sm font-semibold hover:bg-primary-50">+ New Learning Path</a>
+                    <a href="wireframe-SCR-028-create-course.html" id="create-course-btn" class="px-4 py-2 bg-primary-500 text-white rounded-lg text-sm font-semibold hover:bg-primary-600">+ New Course</a>
+                </div>
+            </header>
+            <main class="p-8">
+                <!-- Search & Filter -->
+                <div class="flex gap-4 mb-6">
+                    <div class="flex-1 relative">
+                        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        <input type="text" placeholder="Search courses and paths..." class="w-full pl-10 pr-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500">
+                    </div>
+                    <select class="px-4 py-2 border border-neutral-300 rounded-lg"><option>All Status</option><option>Published</option><option>Draft</option></select>
+                    <select class="px-4 py-2 border border-neutral-300 rounded-lg"><option>All Types</option><option>Learning Paths</option><option>Courses</option></select>
+                </div>
+                <!-- Tabs -->
+                <div class="border-b border-neutral-200 mb-6">
+                    <nav class="flex gap-8">
+                        <button class="py-3 border-b-2 border-primary-500 text-primary-600 font-semibold text-sm">All Content (48)</button>
+                        <button class="py-3 border-b-2 border-transparent text-neutral-600 text-sm">Learning Paths (4)</button>
+                        <button class="py-3 border-b-2 border-transparent text-neutral-600 text-sm">Courses (44)</button>
+                    </nav>
+                </div>
+                <!-- Content Table -->
+                <div class="bg-white rounded-lg border border-neutral-200 overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-neutral-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase">Title</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase">Credits</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase">Enrollments</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-200">
+                            <tr class="hover:bg-neutral-50">
+                                <td class="px-6 py-4 font-medium text-neutral-900">AI Foundations Path</td>
+                                <td class="px-6 py-4"><span class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded">Learning Path</span></td>
+                                <td class="px-6 py-4"><span class="text-xs bg-green-50 text-secondary-500 px-2 py-1 rounded">Published</span></td>
+                                <td class="px-6 py-4 text-neutral-600">80</td>
+                                <td class="px-6 py-4 text-neutral-600">1,234</td>
+                                <td class="px-6 py-4 flex gap-2">
+                                    <a href="wireframe-SCR-027-create-learning-path.html" class="text-primary-500 hover:text-primary-700 text-sm">Edit</a>
+                                    <button class="text-neutral-500 hover:text-neutral-700 text-sm">Unpublish</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50">
+                                <td class="px-6 py-4 font-medium text-neutral-900">Introduction to Machine Learning</td>
+                                <td class="px-6 py-4"><span class="text-xs bg-purple-50 text-accent-500 px-2 py-1 rounded">Course</span></td>
+                                <td class="px-6 py-4"><span class="text-xs bg-green-50 text-secondary-500 px-2 py-1 rounded">Published</span></td>
+                                <td class="px-6 py-4 text-neutral-600">20</td>
+                                <td class="px-6 py-4 text-neutral-600">856</td>
+                                <td class="px-6 py-4 flex gap-2">
+                                    <a href="wireframe-SCR-028-create-course.html" class="text-primary-500 hover:text-primary-700 text-sm">Edit</a>
+                                    <button class="text-neutral-500 hover:text-neutral-700 text-sm">Unpublish</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50 bg-yellow-50">
+                                <td class="px-6 py-4 font-medium text-neutral-900">Advanced Reinforcement Learning</td>
+                                <td class="px-6 py-4"><span class="text-xs bg-purple-50 text-accent-500 px-2 py-1 rounded">Course</span></td>
+                                <td class="px-6 py-4"><span class="text-xs bg-yellow-50 text-warning-500 px-2 py-1 rounded border border-yellow-200">Draft</span></td>
+                                <td class="px-6 py-4 text-neutral-600">30</td>
+                                <td class="px-6 py-4 text-neutral-400">—</td>
+                                <td class="px-6 py-4 flex gap-2">
+                                    <a href="wireframe-SCR-028-create-course.html" class="text-primary-500 hover:text-primary-700 text-sm">Edit</a>
+                                    <button class="text-secondary-500 hover:text-secondary-700 text-sm font-semibold">Publish</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

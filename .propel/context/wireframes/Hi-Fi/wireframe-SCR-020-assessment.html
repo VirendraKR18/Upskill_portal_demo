@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCR-020: Assessment - AI Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: {
+            primary: { 50: '#E6F2FF', 500: '#0078D4', 600: '#0060A8' },
+            secondary: { 500: '#10B981' }, error: { 500: '#EF4444' }, warning: { 500: '#F59E0B' },
+            neutral: { 50: '#F9FAFB', 100: '#F3F4F6', 200: '#E5E7EB', 300: '#D1D5DB', 500: '#6B7280', 600: '#4B5563', 700: '#374151', 900: '#111827' }
+        }}}}
+    </script>
+    <style>body { font-family: 'Inter', system-ui, sans-serif; }</style>
+</head>
+<body class="bg-neutral-50">
+    <!-- Navigation Map
+    | Element | Action | Target Screen |
+    |---------|--------|---------------|
+    | #back-course | click | SCR-010 (Course Player) |
+    | #submit-assessment | click | SCR-002 (Dashboard - success redirect) |
+    -->
+    <div class="min-h-screen">
+        <!-- Top Bar -->
+        <header class="bg-white border-b border-neutral-200 px-6 py-3 flex items-center justify-between sticky top-0 z-50">
+            <a href="wireframe-SCR-010-course-player.html" id="back-course" class="text-neutral-600 hover:text-primary-500 flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                Back to Course
+            </a>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 text-warning-500 font-mono font-bold text-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    24:35
+                </div>
+                <span class="text-sm text-neutral-500">Question 3 of 10</span>
+            </div>
+        </header>
+
+        <!-- Progress -->
+        <div class="w-full bg-neutral-200 h-1">
+            <div class="bg-primary-500 h-1" style="width: 30%"></div>
+        </div>
+
+        <main class="max-w-3xl mx-auto px-6 py-10">
+            <h1 class="text-2xl font-bold text-neutral-900 mb-2">Final Assessment: Introduction to Machine Learning</h1>
+            <p class="text-neutral-600 mb-8">Answer all questions. Minimum 70% required to pass.</p>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-lg border border-neutral-200 p-8 mb-8">
+                <div class="flex items-center gap-2 mb-6">
+                    <span class="text-sm font-semibold text-primary-600 bg-primary-50 px-3 py-1 rounded">Question 3</span>
+                    <span class="text-sm text-neutral-500">Multiple Choice</span>
+                </div>
+                <h2 class="text-xl font-semibold text-neutral-900 mb-6">Which of the following is a supervised learning algorithm?</h2>
+                <div class="space-y-3">
+                    <label class="flex items-center gap-3 p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary-300 hover:bg-primary-50 transition-colors">
+                        <input type="radio" name="q3" class="w-5 h-5 text-primary-500 focus:ring-primary-500" />
+                        <span class="text-neutral-700">K-Means Clustering</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-4 border-2 border-primary-500 rounded-lg bg-primary-50 cursor-pointer">
+                        <input type="radio" name="q3" checked class="w-5 h-5 text-primary-500 focus:ring-primary-500" />
+                        <span class="text-neutral-900 font-medium">Linear Regression</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary-300 hover:bg-primary-50 transition-colors">
+                        <input type="radio" name="q3" class="w-5 h-5 text-primary-500 focus:ring-primary-500" />
+                        <span class="text-neutral-700">Principal Component Analysis</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary-300 hover:bg-primary-50 transition-colors">
+                        <input type="radio" name="q3" class="w-5 h-5 text-primary-500 focus:ring-primary-500" />
+                        <span class="text-neutral-700">DBSCAN</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question Navigation -->
+            <div class="flex flex-wrap gap-2 mb-8">
+                <button class="w-10 h-10 rounded-lg bg-secondary-500 text-white font-semibold text-sm">1</button>
+                <button class="w-10 h-10 rounded-lg bg-secondary-500 text-white font-semibold text-sm">2</button>
+                <button class="w-10 h-10 rounded-lg bg-primary-500 text-white font-semibold text-sm ring-2 ring-primary-300">3</button>
+                <button class="w-10 h-10 rounded-lg bg-neutral-200 text-neutral-600 font-semibold text-sm">4</button>
+                <button class="w-10 h-10 rounded-lg bg-neutral-200 text-neutral-600 font-semibold text-sm">5</button>
+                <button class="w-10 h-10 rounded-lg bg-neutral-200 text-neutral-600 font-semibold text-sm">6</button>
+                <button class="w-10 h-10 rounded-lg bg-neutral-200 text-neutral-600 font-semibold text-sm">7</button>
+                <button class="w-10 h-10 rounded-lg bg-neutral-200 text-neutral-600 font-semibold text-sm">8</button>
+                <button class="w-10 h-10 rounded-lg bg-neutral-200 text-neutral-600 font-semibold text-sm">9</button>
+                <button class="w-10 h-10 rounded-lg bg-neutral-200 text-neutral-600 font-semibold text-sm">10</button>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between">
+                <button class="px-6 py-3 border border-neutral-300 rounded-lg text-neutral-700 hover:bg-neutral-50">← Previous</button>
+                <div class="flex gap-3">
+                    <button class="px-6 py-3 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600">Next →</button>
+                    <a href="wireframe-SCR-002-dashboard.html" id="submit-assessment" class="px-6 py-3 bg-secondary-500 text-white rounded-lg font-semibold hover:bg-secondary-600 hidden">Submit Assessment</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
