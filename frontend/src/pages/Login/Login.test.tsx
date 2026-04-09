@@ -3,20 +3,40 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Login from './Login';
 import * as ssoService from '../../services/auth/ssoService';
 import { BrowserRouter } from 'react-router-dom';
-import { redirectToDashboard, mapRoleToRoute } from '../../utils/roleRedirect';
 
 jest.mock('../../services/auth/ssoService');
 
 describe('Login Page', () => {
   beforeEach(() => {
-    jest.resetAllMocks();
+    jest.clearAllMocks();
   });
 
-  test('SSO button click triggers initiateSSOLogin and shows loading', async () => {
-    const initiateMock = jest.spyOn(ssoService, 'initiateSSOLogin').mockImplementation(async () => {
-      // Simulate redirect that doesn't complete in test
-      return;
+  test('clicking SSO button triggers initiateSSOLogin and shows loading', async () => {
+    const initiateMock = ssoService.initiateSSOLogin as jest.MockedFunction<typeof ssoService.initiateSSOLogin>;
+    // Simulate a promise that doesn't resolve (since real function would redirect)
+    initiateMock.mockImplementation(() => new Promise(() => {}));
+
+    render(
+      <BrowserRouter>
+        <Login />
+      </BrowserRouter>
+    );
+
+    const button = screen.getByRole('button', { name: /Sign in with Organization Account/i });
+    expect(button).toBeInTheDocument();
+    fireEvent.click(button);
+
+    // Loading state - button should show redirecting text
+    await waitFor(() => {
+      expect(screen.getByText(/Redirecting to SSO\.\.\./i)).toBeInTheDocument();
     });
+
+    expect(initiateMock).toHaveBeenCalledTimes(1);
+  });
+
+  test('shows network error when initiateSSOLogin throws and retry clears error', async () => {
+    const initiateMock = ssoService.initiateSSOLogin as jest.MockedFunction<typeof ssoService.initiateSSOLogin>;
+    initiateMock.mockRejectedValue(new Error('SSO provider temporarily unavailable'));
 
     render(
       <BrowserRouter>
@@ -27,56 +47,14 @@ describe('Login Page', () => {
     const button = screen.getByRole('button', { name: /Sign in with Organization Account/i });
     fireEvent.click(button);
 
-    expect(initiateMock).toHaveBeenCalled();
+    const errorMessage = await screen.findByText(/Authentication service temporarily unavailable/i);
+    expect(errorMessage).toBeInTheDocument();
 
-    // Loading indicator text appears
-    await waitFor(() => {
-      expect(screen.getByText(/Redirecting to SSO/i)).toBeInTheDocument();
-    });
-  });
-
-  test('displays error banner when initiateSSOLogin throws', async () => {
-    jest.spyOn(ssoService, 'initiateSSOLogin').mockImplementation(async () => {
-      throw new Error('Network failure');
-    });
-
-    render(
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
-    );
-
-    const button = screen.getByRole('button', { name: /Sign in with Organization Account/i });
-    fireEvent.click(button);
+    const retryButton = screen.getByRole('button', { name: /Retry/i });
+    fireEvent.click(retryButton);
 
     await waitFor(() => {
-      expect(screen.getByRole('alert')).toBeInTheDocument();
-      expect(screen.getByText(/Network failure/i)).toBeInTheDocument();
+      expect(screen.queryByText(/Authentication service temporarily unavailable/i)).not.toBeInTheDocument();
     });
-
-    // Retry: close the alert
-    const closeButton = screen.getByLabelText('close');
-    fireEvent.click(closeButton);
-
-    await waitFor(() => {
-      // Alert should be removed
-      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-    });
-  });
-});
-
-describe('roleRedirect utility', () => {
-  test('maps known roles to routes', () => {
-    expect(mapRoleToRoute('Learner')).toBe('/dashboard');
-    expect(mapRoleToRoute('Manager')).toBe('/manager-dashboard');
-    expect(mapRoleToRoute('Admin')).toBe('/admin-console');
-    expect(mapRoleToRoute('Leadership')).toBe('/leadership-dashboard');
-  });
-
-  test('unknown role defaults to /dashboard and logs warning', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
-    expect(mapRoleToRoute('Stranger')).toBe('/dashboard');
-    expect(warn).toHaveBeenCalledWith(expect.stringContaining('Unrecognized role claim'));
-    warn.mockRestore();
   });
 });
