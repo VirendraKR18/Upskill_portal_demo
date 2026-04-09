@@ -1,0 +1,1 @@
+export type UserRole = 'Learner' | 'Manager' | 'Admin' | 'Leadership' | string;

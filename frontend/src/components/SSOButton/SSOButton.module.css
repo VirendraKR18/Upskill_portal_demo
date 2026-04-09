@@ -1,0 +1,18 @@
+.ssoButton {
+  min-width: 320px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: box-shadow 120ms ease, transform 120ms ease;
+}
+
+.ssoButton:active {
+  transform: translateY(1px);
+}
+
+.ssoButtonDisabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
